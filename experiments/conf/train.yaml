@@ -1,0 +1,10 @@
+exp_type: ""
+exp_name: ""
+description: ""
+
+# Common experimental parameters
+end_after_n_exps: Null
+
+defaults:
+  - _defaults
+  - experiment: ""

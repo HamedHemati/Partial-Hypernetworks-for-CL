@@ -1,0 +1,32 @@
+# @package _global_
+
+# ----------> Dataset
+benchmark: scifar100
+input_size: 32
+n_classes: 100
+bnch_params:
+  n_experiences: 20
+  return_task_id: True
+  class_ids_from_zero_in_each_exp: True
+
+# ----------> Training params
+strategy: EWC
+
+strategy_params:
+  train_mb_size: 64
+  eval_mb_size: 256
+  train_epochs: 40
+
+  ewc_lambda: 1.0
+
+optimizer: SGD
+
+optim_params:
+  lr: 0.03
+
+# ----------> Model
+model: ResNet18
+multi_head: True
+
+load_from_pretrained: False
+pretrained_ckpt_path: ""

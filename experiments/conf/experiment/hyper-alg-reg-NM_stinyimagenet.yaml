@@ -1,0 +1,49 @@
+# @package _global_
+
+# ----------> Dataset
+benchmark: stinyimagenet
+input_size: 32
+n_classes: 200
+bnch_params:
+  n_experiences: 20
+  return_task_id: True
+  class_ids_from_zero_in_each_exp: True
+  dataset_root: "$dataset_root"
+
+# ----------> Training params
+strategy: Hyper-Alg-Reg-NM
+
+strategy_params:
+  train_mb_size: 64
+  eval_mb_size: 256
+  train_epochs: 20
+
+  hnet_reg_ntasks: 20
+  coef_hnet_replay: 0.1
+  freeze_after_first_exp: True
+  second_order: True
+  wg_embedding_mode: "copy_prev"
+
+  model_checkpoint_path: None
+
+
+optimizer: Adam
+optim_params:
+  lr: 0.001
+
+use_lr_scheduler: False
+lr_scheduler_milestones: [80, 120, 180]
+lr_scheduler_gamma: 0.5
+
+# ----------> Model
+model: HyperResNet18SH
+multi_head: False
+
+model_params:
+  embd_dim: 32
+  hidden_size_1: 50
+  hidden_size_2: 50
+  head_emb_dim: 32
+
+load_from_pretrained: False
+pretrained_ckpt_path: ""

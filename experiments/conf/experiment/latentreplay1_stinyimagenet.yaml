@@ -1,0 +1,38 @@
+# @package _global_
+
+# ----------> Dataset
+benchmark: stinyimagenet
+input_size: 32
+n_classes: 200
+bnch_params:
+  n_experiences: 20
+  return_task_id: True
+  class_ids_from_zero_in_each_exp: True
+  dataset_root: "$dataset_root"
+
+# ----------> Training params
+strategy: LatentReplay1
+
+strategy_params:
+  train_mb_size: 64
+  eval_mb_size: 256
+  train_epochs: 40
+
+  max_buffer_size: 200
+  buffer_mb_size: 64
+  buffer_update_mode: ClassBalanced
+  coef_exemplar_replay: 1.0
+
+  model_checkpoint_path: Null
+
+optimizer: SGD
+
+optim_params:
+  lr: 0.03
+
+# ----------> Model
+model: MTResNet18LatentReplay
+multi_head: True
+
+load_from_pretrained: False
+pretrained_ckpt_path: ""
