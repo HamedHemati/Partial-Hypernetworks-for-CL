@@ -50,12 +50,15 @@ conda env create -f environment.yml
 
 Then, start an experiment using the scripts provided under `experiments/scripts`:
 
-3. **Start training (example)**: 
+3. **Start training (example: partial hypernetwork with different depths)**: 
 
 ```bash
 python -m experiments.train_incremental --multirun \
-        experiment=ewc_scifar100 n_classes=5  input_size=32 description="exp-2_scifar100" \
-        optimizer=Adam optim_params.lr=0.001 +model_params.freeze_depth=-1 \
-        strategy_params.train_epochs=100 strategy_params.ewc_lambda=1.0 model=ResNet18 multi_head=True \
-        num_workers=5  seed=0 wandb_proj=HyperCL  save_results=True
+        experiment=hyper-alg-reg-NM_scifar100 n_classes=10 input_size=32 \
+        model=HyperResNet18SH,HyperResNet18SPv1SH,HyperResNet18SPv2SH,HyperResNet18SPv3SH,HyperResNet18SPv4SH \
+        model_params.embd_dim=32 model_params.hidden_size_1=50 \
+        model_params.hidden_size_2=32 model_params.head_emb_dim=32 \
+        optimizer=Adam optim_params.lr=0.001 \
+        strategy_params.coef_hnet_replay=0.5 strategy_params.second_order=False \
+        strategy_params.train_epochs=100 num_workers=5 device=cpu 
 ```

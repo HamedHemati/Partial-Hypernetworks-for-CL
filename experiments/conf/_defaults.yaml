@@ -3,7 +3,7 @@ dataset_root: ./data/datasets
 num_workers: 3
 wandb_proj: ""
 save_results: False
-device: "cuda"
+device: "cpu"
 seed: 0
 
 # Other defaults

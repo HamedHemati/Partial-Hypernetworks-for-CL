@@ -8,7 +8,7 @@ python -m experiments.train_incremental --multirun \
         strategy_params.buffer_mb_size=64  strategy_params.train_epochs=100 \
         strategy_params.coef_exemplar_replay=1.0 \
         strategy_params.model_checkpoint_path="./checkpoints/ckpt_final.pt" \
-        end_after_n_exps=Null  wandb_proj=HyperCL save_results=True
+        wandb_proj=HyperCL save_results=True
 
 # HyperResNet
 python -m experiments.train_incremental --multirun \
